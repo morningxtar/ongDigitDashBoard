@@ -1,0 +1,22 @@
+<div class="container mt-4">
+  <div class="panel panel-default">
+    <div class="panel-heading mb-3"><h3>Edition de la machine</h3></div>
+    <div class="panel-body" *ngIf="currentMachine">
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+
+        <div class="form-group">
+          <label>Libelle</label>
+          <input type="text" formControlName="libelle" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.libelle.errors }" [(ngModel)]="currentMachine.libelle" />
+          <div *ngIf="submitted && f.libelle.errors" class="invalid-feedback">
+            <div *ngIf="f.libelle.errors.required">libelle is required</div>
+          </div>
+        </div>
+
+        <div>
+          <button class="btn btn-primary mr-1">Ajouter</button>
+          <button class="btn btn-secondary" type="reset" (click)="onReset()">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

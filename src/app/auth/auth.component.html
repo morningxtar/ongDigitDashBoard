@@ -1,0 +1,29 @@
+<div class="container mt-4">
+  <div class="panel panel-default">
+    <div class="panel-heading mb-3"><h3>Authentification</h3></div>
+    <div class="panel-body">
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+
+        <div class="form-group">
+          <label>Email</label>
+          <input size="50" type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+          <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+            <div *ngIf="f.email.errors.required">L'email est requis</div>
+            <div *ngIf="f.email.errors.email">L'email n'est pas valide</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Mot de passe</label>
+          <input size="50" type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+          <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+            <div *ngIf="f.password.errors.required">Le mot de passe est requis</div>
+          </div>
+        </div>
+
+        <div>
+          <button class="btn btn-primary mr-1">Connexion</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,30 @@
+
+<div class="container mt-3">
+  <div class="panel panel-primary">
+    <div class="panel-heading"><h3>Liste des machines</h3></div>
+    <div class="panel-body">
+      <a class="btn btn-primary" (click)="onAdd()">Nouvelle machine</a>
+      <table *ngIf="machines" class="table table-striped">
+        <tr>
+          <th>libelle</th>
+        </tr>
+        <tr *ngFor="let machine of machines">
+          <td>{{machine.libelle}}</td>
+          <td><a class="btn btn-success" (click)="onEdit(machine)">Editer</a></td>
+          <td><a class="btn btn-danger" (click)="onDelete(machine)">Supprimer</a></td>
+        </tr>
+      </table>
+      <ul *ngIf="pages" class="pagination">
+        <li [ngClass]="0 == currentPage ? 'page-item disabled' : 'page-item'">
+          <a class="page-link btn" (click)="onLoadMachine(currentPage - 1)" >Précédent</a>
+        </li>
+        <li *ngFor="let page of pages; let i = index" [ngClass]="i == currentPage ? 'active' : ''" class="page-item">
+          <a class="page-link btn" (click)="onLoadMachine(i)">{{i}}</a>
+        </li>
+        <li [ngClass]="totalPages - 1 == currentPage ? 'page-item disabled' : 'page-item'">
+          <a class="page-link btn" (click)="onLoadMachine(currentPage + 1)">Suivant</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

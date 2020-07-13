@@ -1,0 +1,49 @@
+
+<div class="container mt-3">
+  <div class="panel panel-primary">
+    <div class="panel-heading"><h3>Liste des utilisateurs</h3></div>
+    <div class="panel-body">
+<!--      <form #f='ngForm' (ngSubmit)="onSearch(f.value)">-->
+<!--        <div class="form-group">-->
+<!--          <label>Nom ou prenom : </label>-->
+<!--          <input type="text" name="keyword" ngModel>-->
+<!--          <button class="btn btn-primary" type="submit">-->
+<!--            <span class="glyphicon glyphicon-search">rechercher</span>-->
+<!--          </button>-->
+<!--        </div>-->
+<!--      </form>-->
+      <a class="btn btn-primary" (click)="onAdd()">Nouvel utilisateur</a>
+      <table *ngIf="users" class="table table-striped">
+        <tr>
+          <th>Email</th>
+          <th>Nom</th>
+          <th>Prenoms</th>
+          <th>Numéro</th>
+          <th>Mot de passe</th>
+          <th>Type d'utilisateur</th>
+        </tr>
+        <tr *ngFor="let user of users">
+          <td>{{user.email}}</td>
+          <td>{{user.firstName}}</td>
+          <td>{{user.lastName}}</td>
+          <td>{{user.phoneNumber}}</td>
+          <td>{{user.password}}</td>
+          <td>{{user.userType}}</td>
+          <td><a class="btn btn-success" (click)="onEdit(user)">Editer</a></td>
+          <td><a class="btn btn-danger" (click)="onDelete(user)">Supprimer</a></td>
+        </tr>
+      </table>
+      <ul *ngIf="pages" class="pagination">
+        <li [ngClass]="0 == currentPage ? 'page-item disabled' : 'page-item'">
+          <a class="page-link btn" (click)="onLoadProduits(currentPage - 1)" >Précédent</a>
+        </li>
+        <li *ngFor="let page of pages; let i = index" [ngClass]="i == currentPage ? 'active' : ''" class="page-item">
+          <a class="page-link btn" (click)="onLoadProduits(i)">{{i}}</a>
+        </li>
+        <li [ngClass]="totalPages - 1 == currentPage ? 'page-item disabled' : 'page-item'">
+          <a class="page-link btn" (click)="onLoadProduits(currentPage + 1)">Suivant</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
