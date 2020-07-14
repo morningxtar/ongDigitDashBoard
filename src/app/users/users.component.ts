@@ -44,6 +44,12 @@ export class UsersComponent implements OnInit {
     this.router.navigateByUrl('users/edit-user/' + btoa(url));
   }
 
+  onStatistiques(user: any) {
+// @ts-ignore
+    // const url = user._links.self.href;
+    this.router.navigateByUrl('users/statistiques/' + btoa(user));
+  }
+
   onAdd() {
     this.router.navigateByUrl('users/new-user');
   }

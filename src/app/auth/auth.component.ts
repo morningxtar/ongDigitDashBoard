@@ -46,6 +46,7 @@ export class AuthComponent implements OnInit {
           if (value._embedded.users.length > 0) {
             // @ts-ignore
             localStorage.setItem('email', value._embedded.users[0].email);
+            window.location.reload();
             this.authService.changeIsAuth(localStorage.getItem('email'));
             console.log(this.authService.isAuth);
           }

@@ -1,0 +1,91 @@
+<div class="container mt-4">
+  <div class="text-center jumbotron"><h2>Utilisateur {{email}}</h2></div>
+  <div class="row mt-3">
+    <div class="col-lg col-sm col-xl">
+      <h4>Nombre d'heures total utilisé par mois</h4>
+      <div class="chart-wrapper">
+        <canvas baseChart style="height: 400px"
+                [datasets]="barChartData"
+                [labels]="barChartLabels"
+                [options]="barChartOptions"
+                [plugins]="barChartPlugins"
+                [legend]="barChartLegend"
+                [chartType]="barChartType">
+        </canvas>
+      </div>
+    </div>
+    <div class="col-lg col-sm col-xl">
+      <h4>Nombre d'heures total non utilisé par mois</h4>
+      <div class="chart-wrapper">
+        <canvas baseChart style="height: 400px"
+                [datasets]="barChartData1"
+                [labels]="barChartLabels"
+                [options]="barChartOptions"
+                [plugins]="barChartPlugins"
+                [legend]="barChartLegend"
+                [chartType]="barChartType">
+        </canvas>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <h3>Réservation en cours</h3>
+    <table *ngIf="[placesEnCours]" class="table table-striped">
+      <tr>
+        <th>Email</th>
+        <th>Poste</th>
+        <th>Heure début</th>
+        <th>Heure fin</th>
+        <th>Type de service</th>
+      </tr>
+      <tr style="cursor: pointer" *ngFor="let placeEnCours of placesEnCours">
+        <td>{{placeEnCours.userEmail}}</td>
+        <td>{{placeEnCours.computerNumber}}</td>
+        <td>{{placeEnCours.timeReservation.split(',')[0]}} h</td>
+        <td>{{placeEnCours.timeReservation.split(',')[1]}} h</td>
+        <td>{{placeEnCours.serviceType}}</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="row">
+    <h3>Réservations non complétées</h3>
+    <table *ngIf="[placesNonCompleted]" class="table table-striped">
+      <tr>
+        <th>Email</th>
+        <th>Poste</th>
+        <th>Heure début</th>
+        <th>Heure fin</th>
+        <th>Type de service</th>
+      </tr>
+      <tr style="cursor: pointer" *ngFor="let placeNonCompleted of placesNonCompleted">
+        <td>{{placeNonCompleted.userEmail}}</td>
+        <td>{{placeNonCompleted.computerNumber}}</td>
+        <td>{{placeNonCompleted.timeReservation.split(',')[0]}} h</td>
+        <td>{{placeNonCompleted.timeReservation.split(',')[1]}} h</td>
+        <td>{{placeNonCompleted.serviceType}}</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="row">
+    <h3>Réservations non complétées</h3>
+    <table *ngIf="[placesCompleted]" class="table table-striped">
+      <tr>
+        <th>Email</th>
+        <th>Poste</th>
+        <th>Heure début</th>
+        <th>Heure fin</th>
+        <th>Type de service</th>
+      </tr>
+      <tr style="cursor: pointer" *ngFor="let placeCompleted of placesCompleted">
+        <td>{{placeCompleted.userEmail}}</td>
+        <td>{{placeCompleted.computerNumber}}</td>
+        <td>{{placeCompleted.timeReservation.split(',')[0]}} h</td>
+        <td>{{placeCompleted.timeReservation.split(',')[1]}} h</td>
+        <td>{{placeCompleted.serviceType}}</td>
+      </tr>
+    </table>
+  </div>
+</div>

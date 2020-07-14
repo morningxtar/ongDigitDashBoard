@@ -9,7 +9,9 @@ import {UserModel} from "../models/user.model";
 })
 export class MachineService {
 
-  host = 'http://105.235.30.236:888';
+  devHost = 'http://localhost:888';
+  prodHost = 'http://105.235.30.236:888';
+  host = this.prodHost;
 
   constructor(private httpClient: HttpClient) {
   }

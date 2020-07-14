@@ -1,0 +1,34 @@
+<div class="container mt-3">
+  <div class="panel panel-primary">
+    <div class="panel-heading"><h3>Liste de toutes les réservations</h3></div>
+    <div class="panel-body">
+      <table *ngIf="places" class="table table-striped">
+        <tr>
+          <th>Email</th>
+          <th>Poste</th>
+          <th>Heure début</th>
+          <th>Heure fin</th>
+          <th>Type de service</th>
+        </tr>
+        <tr style="cursor: pointer" *ngFor="let place of places">
+          <td>{{place.userEmail}}</td>
+          <td>{{place.computerNumber}}</td>
+          <td>{{place.timeReservation.split(',')[0]}} h</td>
+          <td>{{place.timeReservation.split(',')[1]}} h</td>
+          <td>{{place.serviceType}}</td>
+        </tr>
+      </table>
+      <ul *ngIf="pages" class="pagination">
+        <li [ngClass]="0 == currentPage ? 'page-item disabled' : 'page-item'">
+          <a class="page-link btn" (click)="onLoadProduits(currentPage - 1)" >Précédent</a>
+        </li>
+        <li *ngFor="let page of pages; let i = index" [ngClass]="i == currentPage ? 'active' : ''" class="page-item">
+          <a class="page-link btn" (click)="onLoadProduits(i)">{{i}}</a>
+        </li>
+        <li [ngClass]="totalPages - 1 == currentPage ? 'page-item disabled' : 'page-item'">
+          <a class="page-link btn" (click)="onLoadProduits(currentPage + 1)">Suivant</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

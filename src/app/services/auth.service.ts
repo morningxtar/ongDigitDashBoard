@@ -12,7 +12,9 @@ export class AuthService {
 
   isAuth = false;
 
-  host = 'http://105.235.30.236:888';
+  devHost = 'http://localhost:888';
+  prodHost = 'http://105.235.30.236:888';
+  host = this.prodHost;
 
   constructor(private httpClient: HttpClient, private router: Router) {
   }

@@ -1,7 +1,7 @@
 <div class="container mt-4">
   <div class="row mt-3">
     <div class="col-lg col-sm col-xl">
-      <h4>Nombre d'heures total par mois</h4>
+      <h4>Nombre d'heures total utilisé par mois</h4>
       <div class="chart-wrapper">
         <canvas baseChart style="height: 400px"
                 [datasets]="barChartData"
@@ -14,7 +14,22 @@
       </div>
     </div>
     <div class="col-lg col-sm col-xl">
-      <h4>Nombre d'heures total par utilisateur</h4>
+      <h4>Nombre d'heures total non utilisé par mois</h4>
+      <div class="chart-wrapper">
+        <canvas baseChart style="height: 400px"
+                [datasets]="barChartData3"
+                [labels]="barChartLabels"
+                [options]="barChartOptions"
+                [plugins]="barChartPlugins"
+                [legend]="barChartLegend"
+                [chartType]="barChartType">
+        </canvas>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-3">
+    <div class="col-lg col-sm col-xl">
+      <h4>Nombre d'heures total utilisé par utilisateur</h4>
       <div class="chart-wrapper">
         <canvas baseChart style="height: 400px"
                 [datasets]="barChartData1"
@@ -27,8 +42,6 @@
         </canvas>
       </div>
     </div>
-  </div>
-  <div class="row mt-3">
     <div class="col-lg col-sm col-xl">
       <h4>Nombre d'heures total non utilisé par utilisateur</h4>
       <div class="chart-wrapper">
@@ -39,20 +52,6 @@
                 [plugins]="barChartPlugins"
                 [legend]="barChartLegend"
                 [chartType]="barChartType">
-        </canvas>
-      </div>
-    </div>
-    <div class="col-lg col-sm col-xl">
-      <h4>Nombre d'heures total par utilisateur</h4>
-      <div class="chart-wrapper">
-        <canvas baseChart style="height: 400px"
-                [datasets]="barChartData1"
-                [labels]="barChartLabels1"
-                [options]="barChartOptions"
-                [plugins]="barChartPlugins"
-                [legend]="barChartLegend"
-                [chartType]="barChartType"
-                (chartClick)="test($event)">
         </canvas>
       </div>
     </div>
@@ -70,8 +69,8 @@
       <tr style="cursor: pointer" *ngFor="let placeActive of placesActives">
         <td>{{placeActive.userEmail}}</td>
         <td>{{placeActive.computerNumber}}</td>
-        <td>{{convertStringToNumber(placeActive.timeReservation)}} h</td>
-        <td>{{convertStringToNumber(placeActive.timeReservation) + 1}} h</td>
+        <td>{{placeActive.timeReservation.split(',')[0]}} h</td>
+        <td>{{placeActive.timeReservation.split(',')[1]}} h</td>
         <td>{{placeActive.serviceType}}</td>
       </tr>
     </table>
@@ -90,8 +89,8 @@
       <tr style="cursor: pointer" *ngFor="let placePresent of placesPresents">
         <td>{{placePresent.userEmail}}</td>
         <td>{{placePresent.computerNumber}}</td>
-        <td>{{convertStringToNumber(placePresent.timeReservation)}} h</td>
-        <td>{{convertStringToNumber(placePresent.timeReservation) + 1}} h</td>
+        <td>{{placePresent.timeReservation.split(',')[0]}} h</td>
+        <td>{{placePresent.timeReservation.split(',')[1]}} h</td>
         <td>{{placePresent.serviceType}}</td>
       </tr>
     </table>

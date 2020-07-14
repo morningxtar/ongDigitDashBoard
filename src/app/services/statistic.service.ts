@@ -8,19 +8,28 @@ import {PlaceModel} from '../models/place.model';
 })
 export class StatisticService {
 
-  host = 'http://105.235.30.236:888';
+  devHost = 'http://localhost:888';
+  prodHost = 'http://105.235.30.236:888';
+  host = this.prodHost;
 
   constructor(private httpClient: HttpClient) {
   }
 
-  getNumberHourMonth(mois, access, presence): Observable<number> {
-    return this.httpClient.get<number>(this.host + '/places/search/nbHourMonth?dateReservation='
-    + mois + '&access=' + access + '&presence=' + presence);
+  getNumberHourMonth(mois, presence): Observable<number> {
+    return this.httpClient.get<number>(this.host + '/listPlaces/search/nbHourMonth?dateReservation='
+    + mois + '&presence=' + presence);
   }
 
-  getUserNumberHourMonth(email, access, presence): Observable<number> {
-    return this.httpClient.get<number>(this.host + '/places/search/nbHourMonthUser?' +
-      'access=' + access + '&presence=' + presence + '&userEmail=' + email);
+  getNumberHourMonthUser(user, mois, presence): Observable<number> {
+    return this.httpClient.get<number>(this.host + '/listPlaces/search/nbHourUserMonth?' +
+      'userEmail=' + user
+      + '&presence=' + presence
+      + '&dateReservation=' + mois );
+  }
+
+  getUserNumberHour(email, presence): Observable<number> {
+    return this.httpClient.get<number>(this.host + '/listPlaces/search/nbHourUser?'
+      + '&presence=' + presence + '&userEmail=' + email);
   }
 
   getUsersInSalle(access, presence): Observable<Array<PlaceModel>> {
@@ -33,8 +42,18 @@ export class StatisticService {
       'access=' + access + '&presence=' + presence + '&dateReservation=' + jour);
   }
 
-  getUsersPresenceByEmail(email, access, presence): Observable<Array<PlaceModel>> {
-    return this.httpClient.get<Array<PlaceModel>>(this.host + '/places/search/byPresenceAccessUser?' +
-      'access=' + access + '&presence=' + presence + '&userEmail=' + email);
+  getPlacesAccessByEmail(email): Observable<Array<PlaceModel>> {
+    return this.httpClient.get<Array<PlaceModel>>(this.host + '/listPlaces/search/byAccessUser?' +
+      'email=' + email);
+  }
+
+  getPlacesNoAccessByEmail(email): Observable<Array<PlaceModel>> {
+    return this.httpClient.get<Array<PlaceModel>>(this.host + '/listPlaces/search/byNoAccessUser?' +
+      'email=' + email);
+  }
+
+  getPlacesCompletedByEmail(email): Observable<Array<PlaceModel>> {
+    return this.httpClient.get<Array<PlaceModel>>(this.host + '/listPlaces/search/completedUser?' +
+      'email=' + email);
   }
 }

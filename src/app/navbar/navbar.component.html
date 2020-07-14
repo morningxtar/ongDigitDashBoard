@@ -1,0 +1,17 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" routerLink="">ONG DIGIT</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      <ul class="nav navbar-nav">
+        <li routerLinkActive="active"><a class="nav-item nav-link" routerLink="reservations">Gestion des réservations</a></li>
+        <li routerLinkActive="active"><a class="nav-item nav-link" routerLink="users">Gestion des utilisateurs</a></li>
+        <li routerLinkActive="active"><a class="nav-item nav-link" routerLink="machines">Gestion des machines</a></li>
+        <li routerLinkActive="active"><a class="nav-item nav-link" routerLink="services">Gestion des services</a></li>
+        <li *ngIf="status" routerLinkActive="active"><a class="btn btn-danger" (click)="onSignOut()">Déconnexion</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>

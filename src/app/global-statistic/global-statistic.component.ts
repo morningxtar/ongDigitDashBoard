@@ -18,6 +18,7 @@ export class GlobalStatisticComponent implements OnInit {
   donnees = [];
   donnees1 = [];
   donnees2 = [];
+  donnees3 = [];
   emails = [];
   date = ['-1-', '-2-', '-3-', '-4-', '-5-', '-6-', '-7-', '-8-', '-9-', '-10-', '-11-', '-12-'];
   users: Array<UserModel>;
@@ -35,6 +36,10 @@ export class GlobalStatisticComponent implements OnInit {
 
   barChartData: ChartDataSets[] = [
     {data: this.donnees, label: 'Nombre d\'heures total'},
+  ];
+
+  barChartData3: ChartDataSets[] = [
+    {data: this.donnees3, label: 'Nombre d\'heures total'},
   ];
 
   barChartLabels1: Label[];
@@ -59,13 +64,14 @@ export class GlobalStatisticComponent implements OnInit {
       value => {
         // @ts-ignore
         this.users = value._embedded.users;
-        this.getUserNumberHourByMonth(this.users);
-        this.getNoUserNumberHourByMonth(this.users);
+        this.getUserNumberHour(this.users);
+        this.getNoUserNumberHour(this.users);
       }, error => {
         console.log(error);
       }
     );
     this.getNumberHourByMonth();
+    this.getNoNumberHourByMonth();
     this.getUsersInSalle();
     this.getPresencesUsers(this.dat);
     this.getNonPresencesUsers(this.dat);
@@ -73,7 +79,7 @@ export class GlobalStatisticComponent implements OnInit {
 
   getNumberHourByMonth() {
     for (let i = 0; i < this.date.length; i++) {
-      this.statisticService.getNumberHourMonth(this.date[i], false, true).subscribe(
+      this.statisticService.getNumberHourMonth(this.date[i], true).subscribe(
         nombre => {
           const index = Number(this.date[i].split('-')[1]);
           this.donnees[index - 1] = nombre;
@@ -84,10 +90,23 @@ export class GlobalStatisticComponent implements OnInit {
     }
   }
 
-  getNoUserNumberHourByMonth(users: Array<UserModel>) {
+  getNoNumberHourByMonth() {
+    for (let i = 0; i < this.date.length; i++) {
+      this.statisticService.getNumberHourMonth(this.date[i], false).subscribe(
+        nombre => {
+          const index = Number(this.date[i].split('-')[1]);
+          this.donnees3[index - 1] = nombre;
+        }, error => {
+          console.log(error);
+        }
+      );
+    }
+  }
+
+  getNoUserNumberHour(users: Array<UserModel>) {
     for (let i = 0; i < this.users.length; i++) {
       this.emails[i] = users[i].email;
-      this.statisticService.getUserNumberHourMonth(users[i].email, false, false).subscribe(
+      this.statisticService.getUserNumberHour(users[i].email, false).subscribe(
         nombre => {
           this.donnees2[i] = nombre;
         }, error => {
@@ -97,10 +116,10 @@ export class GlobalStatisticComponent implements OnInit {
     }
   }
 
-  getUserNumberHourByMonth(users: Array<UserModel>) {
+  getUserNumberHour(users: Array<UserModel>) {
     for (let i = 0; i < this.users.length; i++) {
       this.emails[i] = users[i].email;
-      this.statisticService.getUserNumberHourMonth(users[i].email, false, true).subscribe(
+      this.statisticService.getUserNumberHour(users[i].email, true).subscribe(
         nombre => {
           this.donnees1[i] = nombre;
         }, error => {

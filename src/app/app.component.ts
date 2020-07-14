@@ -9,8 +9,8 @@ import {AuthService} from "./services/auth.service";
 })
 export class AppComponent implements OnInit, OnDestroy {
   title = 'ONG Digit Dashboard';
-
   status: boolean;
+
   constructor(private authService: AuthService) {
   }
 
@@ -24,8 +24,4 @@ export class AppComponent implements OnInit, OnDestroy {
     this.status = !!localStorage.getItem('email');
   }
 
-  onSignOut(){
-    this.status = false;
-    this.authService.signOut();
-  }
 }

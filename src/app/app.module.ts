@@ -19,6 +19,9 @@ import { EditPrestationComponent } from './edit-prestation/edit-prestation.compo
 import { AuthComponent } from './auth/auth.component';
 import {AuthGuardService} from './services/auth-guard.service';
 import {ChartsModule} from 'ng2-charts';
+import { UserStatsComponent } from './user-stats/user-stats.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { PlacesComponent } from './places/places.component';
 
 
 const appRoutes: Routes = [
@@ -29,6 +32,7 @@ const appRoutes: Routes = [
       {path: '', component: UsersComponent},
       {path: 'new-user', component: NewUserComponent},
       {path: 'edit-user/:id', component: EditUserComponent},
+      {path: 'statistiques/:id', component: UserStatsComponent},
     ]
   },
   {path: 'machines', canActivate: [AuthGuardService], children: [
@@ -38,6 +42,11 @@ const appRoutes: Routes = [
     ]},
   {path: 'services', canActivate: [AuthGuardService], children: [
       {path: '', component: PrestationComponent},
+      {path: 'new-service', component: NewPrestationComponent},
+      {path: 'edit-service/:id', component: EditPrestationComponent},
+    ]},
+  {path: 'reservations', canActivate: [AuthGuardService], children: [
+      {path: '', component: PlacesComponent},
       {path: 'new-service', component: NewPrestationComponent},
       {path: 'edit-service/:id', component: EditPrestationComponent},
     ]},
@@ -60,6 +69,9 @@ const appRoutes: Routes = [
     NewPrestationComponent,
     EditPrestationComponent,
     AuthComponent,
+    UserStatsComponent,
+    NavbarComponent,
+    PlacesComponent,
   ],
   imports: [
     BrowserModule,
