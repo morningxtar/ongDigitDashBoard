@@ -6,6 +6,7 @@
         <tr>
           <th>Email</th>
           <th>Poste</th>
+          <th>Date</th>
           <th>Heure début</th>
           <th>Heure fin</th>
           <th>Type de service</th>
@@ -13,6 +14,7 @@
         <tr style="cursor: pointer" *ngFor="let place of places">
           <td>{{place.userEmail}}</td>
           <td>{{place.computerNumber}}</td>
+          <td>{{place.dateReservation}}</td>
           <td>{{place.timeReservation.split(',')[0]}} h</td>
           <td>{{place.timeReservation.split(',')[1]}} h</td>
           <td>{{place.serviceType}}</td>
