@@ -25,7 +25,8 @@ import { PlacesComponent } from './places/places.component';
 
 
 const appRoutes: Routes = [
-  {path: '', canActivate: [AuthGuardService], component: GlobalStatisticComponent},
+  {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
+  {path: 'dashboard', canActivate: [AuthGuardService], component: GlobalStatisticComponent},
   {path: 'authentification', component: AuthComponent},
   {
     path: 'users', canActivate: [AuthGuardService], children: [

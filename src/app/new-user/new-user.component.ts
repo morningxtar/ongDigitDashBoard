@@ -9,6 +9,7 @@ import {Router} from "@angular/router";
 })
 export class NewUserComponent implements OnInit {
 
+  typeUsers = ['inscription normale', 'admin'];
   constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit(): void {

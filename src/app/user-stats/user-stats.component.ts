@@ -101,7 +101,7 @@ export class UserStatsComponent implements OnInit {
   }
 
   getPlacesCompleted(email){
-    this.statisticService.getPlacesNoAccessByEmail(email).subscribe(
+    this.statisticService.getPlacesCompletedByEmail(email).subscribe(
       value => {
         this.placesCompleted = value;
       }, error => {

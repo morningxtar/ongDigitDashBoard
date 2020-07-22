@@ -12,6 +12,7 @@ export class EditUserComponent implements OnInit {
 
   currentUser: UserModel;
   url: string;
+  typeUsers = ['inscription normale', 'admin'];
 
   constructor(private router: Router, private activedRoute: ActivatedRoute, private userService: UserService) {
   }
