@@ -22,6 +22,7 @@
           <th>N° CNI / N° Carte scolaire</th>
           <th>Mot de passe</th>
           <th>Type d'utilisateur</th>
+          <th style="background-color: #edf0f5; text-align: center;" colspan="3">Actions</th>
         </tr>
         <tr *ngFor="let user of users">
           <td>{{user.email}}</td>
@@ -31,9 +32,9 @@
           <td>{{user.identity}}</td>
           <td>{{user.password}}</td>
           <td>{{user.userType}}</td>
-          <td><a class="btn btn-primary" (click)="onStatistiques(user.email)">statistiques</a></td>
-          <td><a class="btn btn-success" (click)="onEdit(user)">Editer</a></td>
-          <td><a class="btn btn-danger" (click)="onDelete(user)">Supprimer</a></td>
+          <td style="background-color: #edf0f5;"><a class="btn btn-primary" (click)="onStatistiques(user.email)">statistiques</a></td>
+          <td style="background-color: #edf0f5;"><a class="btn btn-success" (click)="onEdit(user)">Editer</a></td>
+          <td style="background-color: #edf0f5;"><a class="btn btn-danger" (click)="onDelete(user)">Supprimer</a></td>
         </tr>
       </table>
       <ul *ngIf="pages" class="pagination">
