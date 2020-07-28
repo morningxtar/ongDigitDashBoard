@@ -5,7 +5,7 @@ import {Label} from 'ng2-charts';
 import {StatisticService} from '../services/statistic.service';
 import {UserModel} from '../models/user.model';
 import {UserService} from '../services/user.service';
-import {PlaceModel} from "../models/place.model";
+import {PlaceModel} from '../models/place.model';
 
 
 @Component({
